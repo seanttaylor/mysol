@@ -1,0 +1,139 @@
+swagger: "2.0"
+info:
+  description: "mySōl is a DIY IOT solar panel and energy storage unit controllable via a RESTful hypermedia API."
+  version: "0.0.1"
+  title: "mySōl"
+  termsOfService: "http://github.com/seanttaylor"
+  contact:
+    email: "platform@mysol.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "api.mysol.io"
+basePath: "/device"
+tags:
+- name: "Device"
+  description: "Root level of the mySōl device REST API; operation available on the device."
+- name: "Usage"
+  description: "Resources surfacing granular device usage and energy consumption data."
+- name: "Status"
+  description: "Information on current device status (e.g. charging/discharging) and other runtime metrics."
+schemes:
+- "https"
+- "http"
+paths:
+  /control:
+    post:
+      tags:
+      - Device
+      summary: "Send a command to the device; program device state."
+      operationId: "setDeviceState"
+      produces:
+      - "application/json"
+      parameters:
+      - in: header
+        type: string
+        name: authorization
+        description: "Authorization required for request."
+        required: true
+      - in: body
+        name: state
+        description: "Put device in one of an enumerated list of states."
+        required: true
+        schema:
+          type: object
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        500: 
+          description: Server Error
+  /status:
+    get:
+      tags:
+      - Status
+      summary: "Get general information on the status of the device."
+      operationId: "getDeviceStatus"
+      produces:
+      - "application/json"
+      parameters:
+      - in: header
+        type: string
+        name: authorization
+        description: "Authorization required for request."
+        required: true
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        500: 
+          description: Server Error
+  /status/battery:
+    get:
+      tags:
+      - Status
+      summary: "General information on the status of the device battery."
+      operationId: "getDeviceBatteryStatus"
+      produces:
+      - "application/json"
+      parameters:
+      - in: header
+        type: string
+        name: authorization
+        description: "Authorization required for request."
+        required: true
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        500: 
+          description: Server Error
+  /status/usage:
+    get:
+      tags:
+      - Usage
+      summary: "Detailed info on devices attached to the mySōl."
+      operationId: "getDeviceUsage"
+      produces:
+      - "application/json"
+      parameters:
+      - in: header
+        type: string
+        name: authorization
+        description: "Authorization required for request."
+        required: true
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        500: 
+          description: Server Error
+  /status/usage/:id:
+    get:
+      tags:
+      - Usage
+      summary: "Detailed info on a specifc attached device."
+      operationId: "getAttachedDeviceUsageById"
+      produces:
+      - "application/json"
+      parameters:
+      - in: header
+        type: string
+        name: authorization
+        description: "Authorization required for request."
+        required: true
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        500: 
+          description: Server Error
+  
+externalDocs:
+  description: "Find out more about mySōl"
+  url: "http://github.com/seanttaylor/mysol"
