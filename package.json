@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/seanttaylor/mysol/issues"
   },
-  "homepage": "https://github.com/seanttaylor/mysol#readme"
+  "homepage": "https://github.com/seanttaylor/mysol#readme",
+  "dependencies": {
+    "bottlejs": "^1.7.2",
+    "express": "^4.17.1"
+  }
 }
