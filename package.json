@@ -1,0 +1,22 @@
+{
+  "name": "mysol",
+  "version": "0.0.1",
+  "description": "DIY IOT solar panel and energy storage unit controlled via RESTful hypermedia API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seanttaylor/mysol.git"
+  },
+  "keywords": [
+    "IOT",
+    "RxJs"
+  ],
+  "author": "Sean T. Taylor",
+  "bugs": {
+    "url": "https://github.com/seanttaylor/mysol/issues"
+  },
+  "homepage": "https://github.com/seanttaylor/mysol#readme"
+}
