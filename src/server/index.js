@@ -2,8 +2,8 @@ function HTTPServer(bottle) {
     /*Use of ES5 functions required with service declarations.
      * See https://github.com/young-steveo/bottlejs/issues/103
      */
-    const dependencies = ["middleware"];
-    bottle.service("HTTPServer", function(middleware) {
+    //const dependencies = [];
+    bottle.service("HTTPServer", function() {
         const http = require("http");
         const express = require("express");
         const app = express();
@@ -22,7 +22,7 @@ function HTTPServer(bottle) {
         http.createServer(app).listen(serverPort, () => {
             console.log("mySōl server is listening on port %d (http://localhost:%d)", serverPort, serverPort);
         });
-    }, ...dependencies);
+    });
 }
 
 module.exports = HTTPServer;
