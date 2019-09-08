@@ -1,20 +1,21 @@
 function statusService(bottle) {
     const myController = require("./controller.js");
-    const dependencies = ["router"];
+    const dependencies = ["router", "database", "hal"];
 
-    bottle.service("status", function(router) {
+    bottle.service("status", function(router, db, hal) {
         const api = {
             getDeviceStatus
         };
 
         function getDeviceStatus() {
-            return Promise.resolve({});
+            return db.findOne("myDevice");
         }
 
         return {
             controller: myController({
                 api,
-                router: router.Router()
+                router: router.Router(),
+                hal
             })
         }
 

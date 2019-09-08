@@ -7,13 +7,17 @@
     "required": [
       "name",
       "model",
-      "status",
-      "applicationVersion"
+      "status"
     ],
     "additionalProperties": false,
     "properties": {
         "_id": {
             "type": "string",
+            "readOnly": true
+        },
+        "_entity": {
+            "type": "string",
+            "description": "Resource type assigned by backend.",
             "readOnly": true
         },
         "name": {
@@ -39,6 +43,11 @@
         "timeRemainingOnDevicePassword": {
             "type": "integer",
             "description": "Time remaining in milliseconds until the device password must be changed."
+        },
+        "lastStatusUpdate": {
+            "type": "string",
+            "description": "Date/time of the last status update on the device."
+
         },
         "panelExposureLevel": {
             "type": "array",
