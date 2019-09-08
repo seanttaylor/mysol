@@ -1,0 +1,53 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://api.mysol.io/schemas/devices",
+    "type": "object",
+    "description": "The Blog Schema",
+    "required": [
+      "name",
+      "model",
+      "status",
+      "applicationVersion"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "_id": {
+            "type": "string",
+            "readOnly": true
+        },
+        "name": {
+            "type": "string",
+            "description": "User created name assigned to the device on first startup."
+        },
+        "status": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": ["stateA", "stateB", "stateC", "stateD"]
+            },
+            "description": "Current status of the device."
+        },
+        "model": {
+            "type": "string",
+            "description": "Model identifier of the device."
+        },
+        "timeRemainingOnCharge": {
+            "type": "integer",
+            "description": "Time remaining in milliseconds until the device is fully charged. "
+        },
+        "timeRemainingOnDevicePassword": {
+            "type": "integer",
+            "description": "Time remaining in milliseconds until the device password must be changed."
+        },
+        "panelExposureLevel": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "description": "An approximation of the quality of light striking the device panel as well as the coverage of the panel; impacts charging times.",
+                "enum": ["0", "1", "2", "3"]
+            }
+        },
+        "applicationVersion": "0.0.1"
+    }
+}
