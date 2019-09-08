@@ -24,13 +24,27 @@
             "type": "string",
             "description": "User created name assigned to the device on first startup."
         },
-        "status": {
+        "deviceStatus": {
             "type": "array",
             "items": {
                 "type": "string",
                 "enum": ["stateA", "stateB", "stateC", "stateD"]
             },
             "description": "Current status of the device."
+        },
+        "batteryStatus": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": ["stateA", "stateB", "stateC", "stateD"]
+            },
+            "description": "Current status of the battery."
+        },
+        "batteryLevel": {
+            "type": "integer",
+            "description": "Current amount of battery charge.",
+            "minimum": 0,
+            "maximum": 10
         },
         "model": {
             "type": "string",

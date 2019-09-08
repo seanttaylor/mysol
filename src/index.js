@@ -1,9 +1,10 @@
 module.exports = {
     router: require("./lib/router"),
-    database: require("./lib/db"),
+    database: require("./lib/database"),
     hal: require("./lib/hal"),
     events: require("./lib/events"),
     //gpio: require("./lib/gpio"),
+    battery: require("./device/battery"),
     status: require("./device/status"),
     control: require("./device/control"),
     init: require("./device/init"),
