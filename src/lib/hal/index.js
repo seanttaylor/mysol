@@ -8,6 +8,9 @@ function hal(bottle) {
         };
 
         function of(data) {
+            if (!data._entity) {
+                return data;
+            }
             return resources[data._entity](data);
         }
     });

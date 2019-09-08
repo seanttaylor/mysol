@@ -1,13 +1,13 @@
 {
-  "myDevice": {
-    "model": "001-alpha",
-    "status": "standby",
-    "lastStatusUpdate": "2019-07-12T22:54:29.510Z",
-    "name": "Sean's mySōl",
-    "timeRemainingOnCharge": null,
-    "timeRemainingOnDevicePassword": null,
-    "applicationVersion": "0.0.1",
-    "_entity": "device",
-    "_id": "3doqyp9hz"
-  }
+ "myDevice": {
+  "_id": "myDevice",
+  "model": "001-alpha",
+  "status": "CHARGING",
+  "lastStatusUpdate": "2019-09-08T15:10:53.188Z",
+  "name": "Sean's mySōl",
+  "timeRemainingOnCharge": null,
+  "timeRemainingOnDevicePassword": null,
+  "applicationVersion": "0.0.1",
+  "_entity": "device"
+ }
 }

@@ -34,20 +34,22 @@
         },
         "model": {
             "type": "string",
-            "description": "Model identifier of the device."
+            "description": "Model identifier of the device.",
+            "readOnly": true
         },
         "timeRemainingOnCharge": {
             "type": "integer",
-            "description": "Time remaining in milliseconds until the device is fully charged. "
+            "description": "Time remaining in milliseconds until the device is fully charged.",
+            "readOnly": true
         },
         "timeRemainingOnDevicePassword": {
             "type": "integer",
-            "description": "Time remaining in milliseconds until the device password must be changed."
+            "description": "Time remaining in milliseconds until the device password must be changed.",
+            "readOnly": true
         },
         "lastStatusUpdate": {
             "type": "string",
             "description": "Date/time of the last status update on the device."
-
         },
         "panelExposureLevel": {
             "type": "array",
@@ -57,6 +59,9 @@
                 "enum": ["0", "1", "2", "3"]
             }
         },
-        "applicationVersion": "0.0.1"
+        "applicationVersion": {
+            "type": "string",
+            "description": "Current application version."
+        }
     }
 }

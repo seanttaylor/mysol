@@ -23,7 +23,14 @@ function dbInterface(bottle) {
     }
   
     function update(id, body) {
-      return promisify(repo.update)({ _id: id, ...body });
+      return findOne(id).then((data)=> {
+        const updatedRecord = Object.assign(data, body);
+        return promisify(repo.update)({ 
+          _id: id, 
+          ...updatedRecord
+        });
+      })
+      
     }
   
     function remove(id) {

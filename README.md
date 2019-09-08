@@ -5,7 +5,7 @@ mySōl is a DIY IOT solar panel and energy storage unit controllable via a RESTf
 
 The mySōl's API is implemented with a Node/Express server running on a Raspberry PI 3. All device functions are controlled via endpoints exposed on the API.
 
-The companion web app used the API to provide an easy and intuitive interface for uses to control their device and learn more about their energy consumption pattenr and estimated carbon footprint.
+The companion web app uses the API to provide an easy and intuitive interface for users to control their device. Users can also learn more about their energy consumption patterns and estimated carbon footprint.
 
 #### What is Hypermedia? 
 
