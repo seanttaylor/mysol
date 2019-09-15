@@ -1,4 +1,10 @@
-module.exports = function device(data) {
+/**
+ * Transforms input data into HAL format.
+ * @param data - Data to format according to the HAL specification.
+ * @returns {Object} - HAL formatted data.
+*/
+
+function device(data) {
     return {
         _links: {
             self: {
@@ -20,5 +26,7 @@ module.exports = function device(data) {
             }
         },
         ...data
-    }
+    }   
 };
+
+module.exports = device;

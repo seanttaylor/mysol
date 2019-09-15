@@ -7,6 +7,11 @@ function statusService(bottle) {
             getDeviceStatus
         };
 
+        /**
+         * Queries data store for device status information.
+         * @returns {Promise} promise - object describing device status.
+         */
+
         function getDeviceStatus() {
             return db.findOne("myDevice");
         }

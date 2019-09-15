@@ -3,6 +3,7 @@ function HTTPServer(bottle) {
      * See https://github.com/young-steveo/bottlejs/issues/103
      */
     const dependencies = ["status"];
+    
     bottle.service("HTTPServer", function(status) {
         const http = require("http");
         const express = require("express");

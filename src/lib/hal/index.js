@@ -7,6 +7,13 @@ function hal(bottle) {
             of
         };
 
+        /**
+         * Returns HAL formatted data with associated links based on the _entity property of the 
+         * input data.
+         * @param {object} data - data to transform to HAL format.
+         * @returns {object} hal - Promise containing the battery status.
+        */
+
         function of(data) {
             if (!data._entity) {
                 return data;
