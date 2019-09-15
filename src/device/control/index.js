@@ -9,10 +9,14 @@ function control(bottle) {
         }
 
         function onDeviceBatteryLevelEvent(batteryLevel) {
+            if (batteryLevel < 4) {
+                console.warn(`LOW BATTERY: ${batteryLevel}`);
+            }
+            
             db.update("myDevice", {
                 batteryLevel,
                 lastStatusUpdate: new Date().toISOString()
-            })
+            });
         }
 
         function onBatteryStatus(batteryStatus) {

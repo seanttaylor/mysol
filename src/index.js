@@ -4,6 +4,7 @@ module.exports = {
     hal: require("./lib/hal"),
     events: require("./lib/events"),
     //gpio: require("./lib/gpio"),
+    psu: require("./device/power-supply"),
     battery: require("./device/battery"),
     status: require("./device/status"),
     control: require("./device/control"),

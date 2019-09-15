@@ -2,8 +2,8 @@
  "myDevice": {
   "_id": "myDevice",
   "model": "001-alpha",
-  "deviceStatus": "ok",
-  "lastStatusUpdate": "2019-09-08T16:36:24.035Z",
+  "deviceStatus": "on",
+  "lastStatusUpdate": "2019-09-14T19:29:00.258Z",
   "name": "Sean's mySōl",
   "timeRemainingOnCharge": null,
   "timeRemainingOnDevicePassword": null,
