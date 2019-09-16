@@ -3,15 +3,15 @@ function powerSupplyUnit(bottle) {
 
         /**
          * Validates the power supply unit is receiving power (i.e. is the device plugged in)
-         * @returns {boolean} hasPower - TRUE if device is plugged in FALSE otherwise.
+         * @returns {Boolean} hasPower - TRUE if device is plugged in, FALSE otherwise.
          */
 
-        function hasPower() {
+        function checkHasPower() {
             return Promise.resolve(Math.round(Math.random()) > 0 ? true : false);
         }
 
         return {
-            hasPower
+            checkHasPower
         }
     });
 }

@@ -1,6 +1,6 @@
 function battery(bottle) {
-    const dependencies = ["events", "psu"];
-    
+    const dependencies = ["events", "powerSupply"];
+
     bottle.service("battery", function(eventEmitter, psu) {
         const { from, interval, zip } = require("rxjs");
         const data = [ 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 ];
@@ -10,7 +10,7 @@ function battery(bottle) {
         chargeEvent$ = zip(
             from(data),
             interval(5000),
-            (batteryLevel, b) => {
+            (batteryLevel) => {
                 eventEmitter.emit("device-battery-level-event", batteryLevel) 
                 return batteryLevel;
             }
@@ -31,9 +31,11 @@ function battery(bottle) {
             /* Battery MUST be queried BEFORE returning status value.
             * The PRESENCE of ABSENCE of a POWER SUPPPLY along with current charge level influences whether the battery is in a charge or discharge state
             */
-            const batteryStatus = Math.round(Math.random()) > 0 && psu.hasPower() ? "charging" : "discharging";
-            eventEmitter.emit(`device-${batteryStatus}`);
-            return Promise.resolve(batteryStatus);
+            return psu.checkHasPower().then((deviceHasPower)=> {
+                const batteryStatus = Math.round(Math.random()) > 0 && deviceHasPower ? "charging" : "discharging";
+                eventEmitter.emit(`device-${batteryStatus}`);
+                return batteryStatus;
+            });
         }
 
         /**

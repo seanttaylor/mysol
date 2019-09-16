@@ -2,13 +2,13 @@
  "myDevice": {
   "_id": "myDevice",
   "model": "001-alpha",
-  "deviceStatus": "on",
-  "lastStatusUpdate": "2019-09-14T19:29:00.258Z",
+  "deviceStatus": "ok",
+  "lastStatusUpdate": "2019-09-15T16:17:53.010Z",
   "name": "Sean's mySōl",
   "timeRemainingOnCharge": null,
   "timeRemainingOnDevicePassword": null,
   "applicationVersion": "0.0.1",
-  "batteryStatus": "discharging",
+  "batteryStatus": "charging",
   "batteryLevel": 0,
   "_entity": "device"
  }
