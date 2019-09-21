@@ -1,4 +1,4 @@
-function sseController({ router }) {
+function sseController({ api, router }) {
 
     router.get("/", (req, res) => {
         
@@ -8,7 +8,8 @@ function sseController({ router }) {
             "content-type": "text/event-stream"
         });
         
-        res.write(`data: Hello World \n\n\n`);
+        api.setSSEResponseWriter((data)=> res.write(data));
+        res.write(`data: SSE channel initialized.\n\n`);
     });
 
     return router;

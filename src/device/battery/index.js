@@ -32,7 +32,7 @@ function battery(bottle) {
             * The PRESENCE of ABSENCE of a POWER SUPPPLY along with current charge level influences whether the battery is in a charge or discharge state
             */
             return psu.checkHasPower().then((deviceHasPower)=> {
-                const batteryStatus = Math.round(Math.random()) > 0 && deviceHasPower ? "charging" : "discharging";
+                const batteryStatus = /*Math.round(Math.random()) > 0 && deviceHasPower ? "charging" : */ "discharging";
                 eventEmitter.emit(`device-${batteryStatus}`);
                 return batteryStatus;
             });

@@ -21,6 +21,7 @@ function control(bottle) {
         function onDeviceBatteryLevelEvent(batteryLevel) {
             if (batteryLevel < 4) {
                 console.warn(`LOW BATTERY: ${batteryLevel}`);
+                eventEmitter.emit("device-low-battery", batteryLevel);
             }
 
             db.update("myDevice", {
