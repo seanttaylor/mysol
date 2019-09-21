@@ -3,6 +3,7 @@ module.exports = {
     database: require("./lib/database"),
     hal: require("./lib/hal"),
     events: require("./lib/events"),
+    see: require("./device/sse"),
     //gpio: require("./lib/gpio"),
     psu: require("./device/power-supply"),
     battery: require("./device/battery"),
