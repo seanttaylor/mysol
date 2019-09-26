@@ -9,7 +9,7 @@ function sseController({ api, router }) {
         });
         
         api.setSSEResponseWriter((data)=> res.write(data));
-        res.write(api.eventOf("sse-channe"));
+        res.write(api.eventOf("sse-channel"));
     });
 
     return router;

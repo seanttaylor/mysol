@@ -2,10 +2,9 @@ function battery(bottle) {
     const dependencies = ["events", "powerSupply"];
 
     bottle.service("battery", function(eventEmitter, psu) {
-        const { from, interval, zip } = require("rxjs");
-        const data = [ 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 ];
+        const { from, interval, zip, range } = require("rxjs");
         chargeEvent$ = zip(
-            from(data),
+            range(1, 100),
             interval(5000),
             onChargeEvent
         );
