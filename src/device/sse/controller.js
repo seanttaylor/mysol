@@ -9,7 +9,7 @@ function sseController({ api, router }) {
         });
         
         api.setSSEResponseWriter((data)=> res.write(data));
-        res.write(`data: SSE channel initialized.\n\n`);
+        res.write(api.eventOf("sse-channe"));
     });
 
     return router;

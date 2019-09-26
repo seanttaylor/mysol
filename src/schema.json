@@ -32,13 +32,9 @@
             },
             "description": "Current status of the device."
         },
-        "batteryStatus": {
-            "type": "array",
-            "items": {
-                "type": "string",
-                "enum": ["stateA", "stateB", "stateC", "stateD"]
-            },
-            "description": "Current status of the battery."
+        "batteryCharging": {
+            "type": "boolean",
+            "description": "Current status of the battery (i.e. charging or discharging.)"
         },
         "batteryLevel": {
             "type": "integer",

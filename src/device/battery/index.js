@@ -4,56 +4,45 @@ function battery(bottle) {
     bottle.service("battery", function(eventEmitter, psu) {
         const { from, interval, zip } = require("rxjs");
         const data = [ 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 ];
-        eventEmitter.on("device-started", onDeviceStarted);
-        eventEmitter.on("device-charging", onDeviceCharging);
-        eventEmitter.on("device-discharging", onDeviceDischarging);
         chargeEvent$ = zip(
             from(data),
             interval(5000),
-            (batteryLevel) => {
-                eventEmitter.emit("device-battery-level-event", batteryLevel) 
-                return batteryLevel;
-            }
+            onChargeEvent
         );
 
-        const batteryObserver = {
-            complete() {
-                console.log("complete");
-            }
-        };
+        chargeEvent$.subscribe();
 
         /**
-         * Queries the power supply module; fires the corresponding event for the current battery * status (i.e. charging or discharging) 
+         * Queries the power supply module; indicates whether battery is charging or 
+         * discharging.
          * @returns {Promise} status - Promise containing the battery status.
         */
 
         function getStatus() {
             /* Battery MUST be queried BEFORE returning status value.
-            * The PRESENCE of ABSENCE of a POWER SUPPPLY along with current charge level influences whether the battery is in a charge or discharge state
+            * The PRESENCE of ABSENCE of a POWER SUPPPLY along with current charge level
+            * influences whether the battery is in a charge or discharge state.
             */
             return psu.checkHasPower().then((deviceHasPower)=> {
-                const batteryStatus = /*Math.round(Math.random()) > 0 && deviceHasPower ? "charging" : */ "discharging";
-                eventEmitter.emit(`device-${batteryStatus}`);
-                return batteryStatus;
+                const batteryCharging = /*Math.round(Math.random()) > 0 && deviceHasPower ? "charging" :*/ false;
+                return batteryCharging;
             });
         }
 
-        /**
-         * Subscribes the to chargeEvent$ observable when the device-discharging event is 
-         * fired.
+         /**
+         * Queries the power supply module; emits a battery event.
+         * @param {Number} batteryLevel - The current charge level reported from the battery.
+         * @returns {Number} batteryLevel - Promise containing the battery status.
         */
 
-        function onDeviceDischarging() {
-            console.log("battery discharging...");
-            chargeEvent$.subscribe(batteryObserver);
-        }
-
-        function onDeviceCharging() {
-            console.log("battery charging...");
-        }
-
-        function onDeviceStarted() {
-            
+        function onChargeEvent(batteryLevel) {
+            getStatus().then((batteryCharging)=> {
+                eventEmitter.emit("device-battery-event", {
+                    batteryLevel,
+                    batteryCharging
+                }); 
+            });
+            return batteryLevel;
         }
 
         return {

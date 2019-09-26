@@ -2,11 +2,12 @@ function control(bottle) {
     const dependencies = ["events", "database", "battery"];
     bottle.service("control", function(eventEmitter, db, battery) {
         eventEmitter.on("device-started", onDeviceStarted);
-        eventEmitter.on("device-battery-level-event", onDeviceBatteryLevelEvent);
+        eventEmitter.on("device-battery-event", onDeviceBatteryEvent);
         
         /**
          * Fetches the current status of the battery from the battery module on the 
          * device-started event.
+         * @retuns void
         */
 
         function onDeviceStarted() {
@@ -14,18 +15,20 @@ function control(bottle) {
         }
 
         /**
-         * Updates the device information persisted in the datastore with the current battery 
+         * Updates the device information persisted in the datastore with the current data 
          * reported from the battery module. 
+         * @param {Object} data - Current data about the battery.
+         * @returns void
         */
 
-        function onDeviceBatteryLevelEvent(batteryLevel) {
+        function onDeviceBatteryEvent({batteryLevel, batteryCharging}) {
             if (batteryLevel < 4) {
                 console.warn(`LOW BATTERY: ${batteryLevel}`);
-                eventEmitter.emit("device-low-battery", batteryLevel);
             }
 
             db.update("myDevice", {
                 batteryLevel,
+                batteryCharging,
                 lastStatusUpdate: new Date().toISOString()
             });
         }
@@ -33,11 +36,12 @@ function control(bottle) {
         /**
          * Updates the device information persisted in the datastore with the current status of 
          * the battery.
+         * @returns void
         */
 
-        function onBatteryStatus(batteryStatus) {
+        function onBatteryStatus(batteryCharging) {
             db.update("myDevice", {
-                batteryStatus: batteryStatus,
+                batteryCharging,
                 deviceStatus: "ok",
                 lastStatusUpdate: new Date().toISOString()
             });

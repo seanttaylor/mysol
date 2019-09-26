@@ -5,10 +5,11 @@ function sse(bottle) {
     bottle.service("sse", function(router, eventEmitter) {
         const api = {
             setSSEResponseWriter,
-            onLowBattery
+            onDeviceBatteryEvent,
+            eventOf
         };
 
-        eventEmitter.on("device-low-battery", api.onLowBattery.bind(api));
+        eventEmitter.on("device-battery-event", api.onDeviceBatteryEvent.bind(api));
 
         /**
          * Creates a UUID.
@@ -32,7 +33,7 @@ function sse(bottle) {
          * @returns {String} 
         */
 
-        function eventOf(eventName, payload) {
+        function eventOf(eventName, payload={}) {
             return `data: ${JSON.stringify({
                 header: {
                     timestamp: new Date().toISOString(),
@@ -44,7 +45,8 @@ function sse(bottle) {
         }
 
          /**
-         * Adds an Express response object to the API module so methods on the API can publish data to the event stream.
+         * Adds an Express response object to the API module so methods on the API can publish 
+         * data to the event stream.
          * @param {Function} responseWriterFn - A function wrapper of the Express response object.
          * @returns void
         */
@@ -54,13 +56,13 @@ function sse(bottle) {
         }
 
         /**
-         * Publishes a server-sent event to the client indicating a low device battery.
-         * @param {Number} batteryLevel - The current battery level.
+         * Publishes a server-sent event to the client with battery data.
+         * @param {Object} batteryData - Current data about the battery.
          * @returns void
         */
 
-        function onLowBattery(batteryLevel) {
-            this.responseOf(eventOf("device-low-battery", {batteryLevel}));
+        function onDeviceBatteryEvent(batteryData) {
+            this.responseOf(eventOf("device-battery-event", batteryData));
         }
 
         return {
