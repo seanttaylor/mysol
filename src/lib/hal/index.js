@@ -3,10 +3,6 @@ function hal(bottle) {
         device: require("./device.js")
     }
     bottle.service("hal", function() {
-        return {
-            of
-        };
-
         /**
          * Returns HAL formatted data with associated links based on the _entity property of the 
          * input data.
@@ -20,6 +16,10 @@ function hal(bottle) {
             }
             return resources[data._entity](data);
         }
+
+        return {
+            of
+        };
     });
 }
   

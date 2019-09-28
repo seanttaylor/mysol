@@ -6,10 +6,12 @@ function sse(bottle) {
         const api = {
             setSSEResponseWriter,
             onDeviceBatteryEvent,
+            onDeviceTelemetryEvent,
             eventOf
         };
 
         eventEmitter.on("device-battery-event", api.onDeviceBatteryEvent.bind(api));
+        eventEmitter.on("device-telemetry-event", api.onDeviceTelemetryEvent.bind(api));
 
         /**
          * Creates a UUID.
@@ -34,6 +36,7 @@ function sse(bottle) {
         */
 
         function eventOf(eventName, payload={}) {
+            console.log(eventName);
             return `data: ${JSON.stringify({
                 header: {
                     timestamp: new Date().toISOString(),
@@ -64,6 +67,16 @@ function sse(bottle) {
         function onDeviceBatteryEvent(batteryData) {
             this.responseOf(eventOf("device-battery-event", batteryData));
         }
+
+        /**
+         * Publishes a server-sent event to the client with telemetry data.
+         * @param {Object} telemetryData - Current telemetry data.
+        */
+
+        function onDeviceTelemetryEvent(telemetryData) {
+            this.responseOf(eventOf("device-telemetry-event", telemetryData));
+        }
+
 
         return {
             controller: myController({

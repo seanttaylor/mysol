@@ -3,12 +3,13 @@ module.exports = {
     database: require("./lib/database"),
     hal: require("./lib/hal"),
     events: require("./lib/events"),
-    see: require("./device/sse"),
+    sse: require("./device/sse"),
     //gpio: require("./lib/gpio"),
+    telemetry: require("./device/telemetry"),
     psu: require("./device/power-supply"),
     battery: require("./device/battery"),
     status: require("./device/status"),
     control: require("./device/control"),
     init: require("./device/init"),
-    server: require("./server")
+    HTTPServer: require("./server")
 }
