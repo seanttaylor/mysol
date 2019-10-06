@@ -20,8 +20,15 @@ function telemetryService(bottle) {
 
         function onTelemetryEvent(data) {
             eventEmitter.emit("device-telemetry-event", {
-                accelerometer: {},
-                photometer: {}
+                accelerometer: {
+                    orientation: data
+                },
+                photometer: {
+                    strength: data
+                },
+                panel: {
+                    coverage: data
+                }
             }); 
 
             return data;

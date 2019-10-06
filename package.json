@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/eslint -c ./.eslintrc.json ./src/**/*.js",
+    "lint:fix": "./node_modules/.bin/eslint -c ./.eslintrc.json ./src/**/*.js --fix"
   },
   "repository": {
     "type": "git",
@@ -29,5 +31,10 @@
     "onoff": "^4.1.4",
     "repositories": "^0.7.2",
     "rxjs": "^6.5.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
   }
 }

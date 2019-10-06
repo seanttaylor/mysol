@@ -36,7 +36,6 @@ function sse(bottle) {
         */
 
         function eventOf(eventName, payload={}) {
-            console.log(eventName);
             return `data: ${JSON.stringify({
                 header: {
                     timestamp: new Date().toISOString(),
