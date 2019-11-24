@@ -3,11 +3,11 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "http://api.mysol.io/schemas/devices",
     "type": "object",
-    "description": "The Blog Schema",
+    "description": "The Device Schema",
     "required": [
-      "name",
-      "model",
-      "status"
+        "name",
+        "model",
+        "status"
     ],
     "additionalProperties": false,
     "properties": {
