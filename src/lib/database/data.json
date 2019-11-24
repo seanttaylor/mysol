@@ -3,13 +3,13 @@
   "_id": "myDevice",
   "model": "001-alpha",
   "deviceStatus": "ok",
-  "lastStatusUpdate": "2019-10-06T23:54:24.684Z",
+  "lastStatusUpdate": "2019-11-24T16:04:28.495Z",
   "name": "Sean's mySōl",
   "timeRemainingOnCharge": null,
   "timeRemainingOnDevicePassword": null,
   "applicationVersion": "0.0.1",
   "batteryCharging": false,
-  "batteryLevel": 18,
+  "batteryLevel": 1,
   "_entity": "device"
  }
 }
