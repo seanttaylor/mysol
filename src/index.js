@@ -3,6 +3,7 @@ module.exports = {
     database: require("./lib/database"),
     hal: require("./lib/hal"),
     events: require("./lib/events"),
+    logger: require("./lib/app-logger"),
     sse: require("./device/sse"),
     //gpio: require("./lib/gpio"),
     telemetry: require("./device/telemetry"),

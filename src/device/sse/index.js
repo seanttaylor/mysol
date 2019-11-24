@@ -1,8 +1,8 @@
 function sse(bottle) {
     const myController = require("./controller.js");
-    const dependencies = ["router", "events"];
+    const dependencies = ["router", "events", "application-logger"];
 
-    bottle.service("sse", function(router, eventEmitter) {
+    bottle.service("sse", function(router, eventEmitter, logger) {
         const api = {
             setSSEResponseWriter,
             onDeviceBatteryEvent,
@@ -24,8 +24,7 @@ function sse(bottle) {
          */
 
         function defaultResponseOf(data) {
-            console.log("/*===New Event===*/");
-            console.log(data);
+            //default implementation does nothing without connected clients.
         }
 
         /**
