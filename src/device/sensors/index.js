@@ -1,17 +1,21 @@
 /**
  * serviceName#sensorService
- * serviceDesc: Exposes API for pushing Server-Sent Events to connected
- * clients.
- * Creates Express route for pushing Server-Sent Events.
+ * serviceDesc: Exposes API for accessing Observables returned from
+ * all device sensors.
  */
 
 function sensorService(bottle) {
     const dependencies = ["events", "logger-service"];
     const accelerometer$ = require("./accelerometer")();
+    const photometer$ = require("./photometer")();
+    const panel$ = require("./panel")();
+
 
     bottle.service("sensors", function(eventEmitter, logger) {
         return {
-            accelerometer$
+            accelerometer$,
+            photometer$,
+            panel$
         }
 
     }, ...dependencies);

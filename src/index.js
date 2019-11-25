@@ -4,6 +4,9 @@ module.exports = {
     hal: require("./lib/hal"),
     events: require("./lib/events"),
     logger: require("./lib/app-logger"),
+    www: require("./lib/www"),
+    //library code should ALWAYS be required FIRST.//
+    weather: require("./device/weather"),
     sse: require("./device/sse"),
     sensors: require("./device/sensors"),
     //gpio: require("./lib/gpio"),
