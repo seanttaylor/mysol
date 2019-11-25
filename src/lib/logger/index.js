@@ -6,6 +6,10 @@ function logger({ type = "default", config = {} } = {}) {
     };
     const myLogger = implementationMap[type](config);
 
+    function log(msg) {
+        myLogger.log(msg);
+    }
+
     function error(msg) {
         myLogger.error(msg);
     }
@@ -24,6 +28,7 @@ function logger({ type = "default", config = {} } = {}) {
     }
 
     return {
+        log,
         error,
         info,
         warn,

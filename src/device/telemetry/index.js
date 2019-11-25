@@ -1,35 +1,32 @@
 function telemetryService(bottle) {
-    /*Sensors module will be included as a dependency.*/
-    const dependencies = ["events"];
-    bottle.service("telemetry", function(eventEmitter) {
-        const { interval, zip, range } = require("rxjs");
-        /*Sensor data will originate from sensors module. This will turn become an observer that consumes data emitted from a sensor observable.*/
+    const dependencies = ["events", "sensors", "application-logger"];
+    bottle.service("telemetry", function(eventEmitter, sensors, logger) {
+        const { interval, zip, range, combineLatest } = require("rxjs");
         const telemetryEvent$ = zip(
             range(1, 100),
             interval(10000),
-            onTelemetryEvent
+            (telemetryData) => telemetryData
         );
+        const telemetryData$ = combineLatest([telemetryEvent$, sensors.accelerometer$]);
 
-        telemetryEvent$.subscribe();
+        telemetryData$.subscribe(onTelemetryEvent);
 
-         /**
+        /**
          * Receives aggregated real-time data from the sensor array.
-         * @param {Number} data - Data reported from the sensor array.
+         * @param { Number } data - Data reported from the sensor array.
          * @returns void
-        */
+         */
 
-        function onTelemetryEvent(data) {
+        function onTelemetryEvent([data, accelerometer]) {
             eventEmitter.emit("device-telemetry-event", {
-                accelerometer: {
-                    orientation: data
-                },
+                accelerometer,
                 photometer: {
                     strength: data
                 },
                 panel: {
                     coverage: data
                 }
-            }); 
+            });
 
             return data;
         }

@@ -5,6 +5,7 @@ module.exports = {
     events: require("./lib/events"),
     logger: require("./lib/app-logger"),
     sse: require("./device/sse"),
+    sensors: require("./device/sensors"),
     //gpio: require("./lib/gpio"),
     telemetry: require("./device/telemetry"),
     psu: require("./device/power-supply"),

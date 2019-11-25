@@ -25,6 +25,7 @@ function sse(bottle) {
 
         function defaultResponseOf(data) {
             //default implementation does nothing without connected clients.
+            logger.log(data);
         }
 
         /**
@@ -50,6 +51,7 @@ function sse(bottle) {
          */
 
         function eventOf(eventName, payload = {}) {
+            //This message format is REQUIRED for Server-Sent Events. See https://medium.com/conectric-networks/a-look-at-server-sent-events-54a77f8d6ff7
             return `data: ${JSON.stringify({
                 header: {
                     timestamp: new Date().toISOString(),
@@ -61,9 +63,9 @@ function sse(bottle) {
         }
 
         /**
-         * Adds an Express response object to the API module so methods on the API can publish
-         * data to the event stream.
-         * @param {Function} responseWriterFn - A function wrapper of the Express response object.
+         * Sets a function for writing to the event stream.
+         * @param {Function} responseWriterFn - A function wrapper of the
+         * Express response object.
          * @returns void
          */
 
@@ -89,7 +91,6 @@ function sse(bottle) {
         function onDeviceTelemetryEvent(telemetryData) {
             responseOf(eventOf("device-telemetry-event", telemetryData));
         }
-
 
         return {
             controller: myController({
