@@ -1,10 +1,15 @@
+/**
+ * serviceName#HTTPServer
+ * serviceDesc: Creates an Express server, enabling device control over HTTP.
+ */
+
 function HTTPServer(bottle) {
   /* Use of ES5 functions required with service declarations.
-     * See https://github.com/young-steveo/bottlejs/issues/103
-     */
+   * See https://github.com/young-steveo/bottlejs/issues/103
+   */
   const dependencies = ["status", "sse"];
 
-  bottle.service("HTTPServer", function (status, sse) {
+  bottle.service("HTTPServer", function(status, sse) {
     const http = require("http");
     const express = require("express");
     const app = express();

@@ -1,6 +1,13 @@
-function sse(bottle) {
+/**
+ * serviceName#sseService
+ * serviceDesc: Exposes API for pushing Server-Sent Events to connected
+ * clients.
+ * Creates Express route for pushing Server-Sent Events.
+ */
+
+function sseService(bottle) {
     const myController = require("./controller.js");
-    const dependencies = ["router", "events", "application-logger"];
+    const dependencies = ["router", "events", "logger-service"];
 
     bottle.service("sse", function(router, eventEmitter, logger) {
         const api = {
@@ -101,4 +108,4 @@ function sse(bottle) {
     }, ...dependencies);
 }
 
-module.exports = sse;
+module.exports = sseService;

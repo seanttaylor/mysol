@@ -1,4 +1,9 @@
-function battery(bottle) {
+/**
+ * serviceName#batteryService
+ * serviceDesc: Exposes API for querying data from the device battery.
+ */
+
+function batteryService(bottle) {
     const dependencies = ["events", "powerSupply"];
 
     bottle.service("battery", function(eventEmitter, psu) {
@@ -12,34 +17,37 @@ function battery(bottle) {
         chargeEvent$.subscribe();
 
         /**
-         * Queries the power supply module; indicates whether battery is charging or 
-         * discharging.
+         * Queries the power supply module; indicates whether battery
+         * is charging or discharging.
          * @returns {Promise} status - Promise containing the battery status.
-        */
+         */
 
         function getStatus() {
             /* Battery MUST be queried BEFORE returning status value.
-            * The PRESENCE of ABSENCE of a POWER SUPPPLY along with current charge level
-            * influences whether the battery is in a charge or discharge state.
-            */
-            return psu.checkHasPower().then((deviceHasPower)=> {
+             * The PRESENCE of ABSENCE of a POWER SUPPPLY along with
+             * current charge level influences whether the battery is
+             * in a charge or discharge state.
+             */
+            return psu.checkHasPower().then((deviceHasPower) => {
                 const batteryCharging = /*Math.round(Math.random()) > 0 && deviceHasPower ? "charging" :*/ false;
                 return batteryCharging;
             });
         }
 
-         /**
+        /**
          * Queries the power supply module; emits a battery event.
-         * @param {Number} batteryLevel - The current charge level reported from the battery.
-         * @returns {Number} batteryLevel - Promise containing the battery status.
-        */
+         * @param {Number} batteryLevel - The current charge level reported
+         * from the battery.
+         * @returns {Number} batteryLevel - Promise containing the
+         * battery status.
+         */
 
         function onChargeEvent(batteryLevel) {
-            getStatus().then((batteryCharging)=> {
+            getStatus().then((batteryCharging) => {
                 eventEmitter.emit("device-battery-event", {
                     batteryLevel,
                     batteryCharging
-                }); 
+                });
             });
             return batteryLevel;
         }
@@ -51,4 +59,4 @@ function battery(bottle) {
     }, ...dependencies);
 }
 
-module.exports = battery;
+module.exports = batteryService;

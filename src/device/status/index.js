@@ -1,3 +1,10 @@
+/**
+ * serviceName#statusService
+ * serviceDesc: Exposes API for fetching device status, formatting HTTP
+ * responses as HAL (http://stateless.co/hal_specification.html).
+ * Creates Express route at /status.
+ */
+
 function statusService(bottle) {
     const myController = require("./controller.js");
     const dependencies = ["router", "database", "hal"];

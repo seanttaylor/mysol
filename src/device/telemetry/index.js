@@ -1,5 +1,11 @@
+/**
+ * serviceName#telemetryService
+ * serviceDesc: Merges all incoming data streams from the device sensors.
+ * Emits event with all telemetry data in the payload.
+ */
+
 function telemetryService(bottle) {
-    const dependencies = ["events", "sensors", "application-logger"];
+    const dependencies = ["events", "sensors", "logger-service"];
     bottle.service("telemetry", function(eventEmitter, sensors, logger) {
         const { interval, zip, range, combineLatest } = require("rxjs");
         const telemetryEvent$ = zip(

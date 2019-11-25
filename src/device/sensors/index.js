@@ -1,5 +1,12 @@
-function sensors(bottle) {
-    const dependencies = ["events", "application-logger"];
+/**
+ * serviceName#sensorService
+ * serviceDesc: Exposes API for pushing Server-Sent Events to connected
+ * clients.
+ * Creates Express route for pushing Server-Sent Events.
+ */
+
+function sensorService(bottle) {
+    const dependencies = ["events", "logger-service"];
     const accelerometer$ = require("./accelerometer")();
 
     bottle.service("sensors", function(eventEmitter, logger) {
@@ -10,4 +17,4 @@ function sensors(bottle) {
     }, ...dependencies);
 }
 
-module.exports = sensors;
+module.exports = sensorService;

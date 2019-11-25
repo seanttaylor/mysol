@@ -1,4 +1,4 @@
-function dbInterface(bottle) {
+function databaseService(bottle) {
   const db = require("../repository")();
 
   process.on("unhandledRejection", (reason, p) => {
@@ -11,4 +11,4 @@ function dbInterface(bottle) {
   });
 }
 
-module.exports = dbInterface;
+module.exports = databaseService;

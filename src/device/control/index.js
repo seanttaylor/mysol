@@ -1,12 +1,18 @@
-function control(bottle) {
+/**
+ * serviceName#controlService
+ * serviceDesc: Main control for device; only module with access to all
+ * device services.
+ */
+
+function controlService(bottle) {
     const dependencies = ["events", "database", "battery"];
     bottle.service("control", function(eventEmitter, db, battery) {
         eventEmitter.on("device-started", onDeviceStarted);
         eventEmitter.on("device-battery-event", onDeviceBatteryEvent);
 
         /**
-         * Fetches the current status of the battery from the battery module on the
-         * device-started event.
+         * Fetches the current status of the battery from the battery
+         * module on the device-started event.
          * @retuns void
          */
 
@@ -15,8 +21,8 @@ function control(bottle) {
         }
 
         /**
-         * Updates the device information persisted in the datastore with the current data
-         * reported from the battery module.
+         * Updates the device information persisted in the datastore with
+         * the current data reported from the battery module.
          * @param {Object} data - Current data about the battery.
          * @returns void
          */
@@ -34,8 +40,8 @@ function control(bottle) {
         }
 
         /**
-         * Updates the device information persisted in the datastore with the current status of
-         * the battery.
+         * Updates the device information persisted in the datastore with
+         * the current status of the battery.
          * @returns void
          */
 
@@ -50,4 +56,4 @@ function control(bottle) {
     }, ...dependencies);
 }
 
-module.exports = control;
+module.exports = controlService;

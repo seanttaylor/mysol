@@ -1,10 +1,14 @@
-function gpioInterface(bottle) {
-    
+/**
+ * serviceName#gpioService
+ * serviceDesc: Exposes API for connecting to device GPIO board.
+ */
+
+function gpioService(bottle) {
+
     bottle.service("gpio", function() {
         const GPIO = require("onoff").Gpio;
         return GPIO;
     });
 }
-  
-module.exports = gpioInterface;
-  
+
+module.exports = gpioService;
