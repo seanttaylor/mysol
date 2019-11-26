@@ -1,5 +1,5 @@
 function weather() {
-    const weatherApiData = require("./dark-sky-schema.json");
+    const weatherApiData = require("../../../models/weather/weather.json");
     let currentLocation = {
         lat: 38.0820268,
         lng: 84.5067193,

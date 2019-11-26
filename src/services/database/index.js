@@ -1,5 +1,5 @@
 function databaseService(bottle) {
-  const db = require("../repository")();
+  const db = require("../../lib/repository")();
 
   process.on("unhandledRejection", (reason, p) => {
     console.error("Unhandled Rejection at:", p, "reason:", reason);
