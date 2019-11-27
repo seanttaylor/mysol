@@ -6,6 +6,7 @@ module.exports = {
     logger: require("./services/app-logger"),
     database: require("./services/database"),
     weather: require("./services/device/weather"),
+    analytics: require("./services/device/analytics"),
     sse: require("./services/device/sse"),
     sensors: require("./services/device/sensors"),
     //gpio: require("./services/gpio"),

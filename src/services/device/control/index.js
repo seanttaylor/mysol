@@ -5,10 +5,11 @@
  */
 
 function controlService(bottle) {
-    const dependencies = ["events", "database", "battery"];
-    bottle.service("control", function(eventEmitter, db, battery) {
+    const dependencies = ["events", "database", "battery", "analytics"];
+    bottle.service("control", function(eventEmitter, db, battery, analytics) {
         eventEmitter.on("device-started", onDeviceStarted);
         eventEmitter.on("device-battery-event", onDeviceBatteryEvent);
+        eventEmitter.on("device-telemetry-event", onDeviceTelemetryEvent);
 
         /**
          * Fetches the current status of the battery from the battery
@@ -51,6 +52,16 @@ function controlService(bottle) {
                 deviceStatus: "ok",
                 lastStatusUpdate: new Date().toISOString()
             });
+        }
+
+        /**
+         * Forwards telemetryData to anayltics module(s).
+         * @param {Object} telemetryData - Current telemetry data.
+         */
+
+        function onDeviceTelemetryEvent(telemetryData) {
+            analytics.onProcessData(telemetryData);
+            //push any alerts to client
         }
 
     }, ...dependencies);

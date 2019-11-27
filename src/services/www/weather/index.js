@@ -7,7 +7,7 @@ function weather() {
     };
 
     function getForecast({ lat = 0.0, lng = 0.0, city = "New York, NY" } = {}) {
-        return Promise.resolve(weatherApiData["daily"]);
+        return Promise.resolve(weatherApiData["daily"]["data"][0]);
     }
 
     function getCurrent() {

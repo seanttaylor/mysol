@@ -1,0 +1,14 @@
+{
+    "__comments": "Configuration for weather analytics module.",
+    "config": {
+        "alertThreshold": {
+            "temperatureLow": 40,
+            "temperatureHigh": 95,
+            "cloudCover": 0.2,
+            "windSpeedMph": 0,
+            "precipProbability": 0.2,
+            "precipType": ["snow", "rain"],
+            "visibility": 0
+        }
+    }
+}

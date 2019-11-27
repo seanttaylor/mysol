@@ -19,8 +19,8 @@ function sseService(bottle) {
 
         let responseOf = defaultResponseOf;
 
-        eventEmitter.on("device-battery-event", api.onDeviceBatteryEvent.bind(api));
-        eventEmitter.on("device-telemetry-event", api.onDeviceTelemetryEvent.bind(api));
+        eventEmitter.on("device-battery-event", api.onDeviceBatteryEvent);
+        eventEmitter.on("device-telemetry-event", api.onDeviceTelemetryEvent);
 
         /**
          * Default implementation of responseOf.
