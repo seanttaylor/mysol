@@ -60,8 +60,8 @@ function controlService(bottle) {
          */
 
         function onDeviceTelemetryEvent(telemetryData) {
-            analytics.onProcessData(telemetryData);
-            //push any alerts to client
+            eventEmitter.emit("device-analytics-event",
+                analytics.onProcessData(telemetryData));
         }
 
     }, ...dependencies);

@@ -16,7 +16,10 @@ function analyticsService(bottle) {
          */
 
         function onProcessData(sensorData) {
-            weatherAnalytics.get(sensorData.weather);
+            return {
+                weather: weatherAnalytics.get(sensorData.weather)
+            };
+            //more calls to analytics modules here...
         }
 
 

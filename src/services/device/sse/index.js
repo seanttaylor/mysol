@@ -14,6 +14,7 @@ function sseService(bottle) {
             setSSEResponseWriter,
             onDeviceBatteryEvent,
             onDeviceTelemetryEvent,
+            onDeviceAnalyticsEvent,
             eventOf
         };
 
@@ -21,6 +22,7 @@ function sseService(bottle) {
 
         eventEmitter.on("device-battery-event", api.onDeviceBatteryEvent);
         eventEmitter.on("device-telemetry-event", api.onDeviceTelemetryEvent);
+        eventEmitter.on("device-analytics-event", api.onDeviceAnalyticsEvent);
 
         /**
          * Default implementation of responseOf.
@@ -93,10 +95,21 @@ function sseService(bottle) {
         /**
          * Publishes a server-sent event to the client with telemetry data.
          * @param {Object} telemetryData - Current telemetry data.
+         * @returns void
          */
 
         function onDeviceTelemetryEvent(telemetryData) {
             responseOf(eventOf("device-telemetry-event", telemetryData));
+        }
+
+        /**
+         * Publishes a server-sent event to the client with telemetry data.
+         * @param {Object} telemetryData - Current telemetry data.
+         * @returns void
+         */
+
+        function onDeviceAnalyticsEvent(analysisData) {
+            responseOf(eventOf("device-analytics-event", analysisData));
         }
 
         return {
