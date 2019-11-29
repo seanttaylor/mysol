@@ -1,11 +1,10 @@
-const storageService = (function storage({ type = "default", config = {} } = {}) {
+function storage({ type = "default", config = {} } = {}) {
     const createPetname = require("node-petname");
     const implementationMap = {
         "default": require("./default")
         //s3: require("./s3")
     };
 
-    console.log(createBucketName());
     const myStorageService = implementationMap[type](config);
 
     function createBucketName() {
@@ -13,11 +12,11 @@ const storageService = (function storage({ type = "default", config = {} } = {})
     }
 
     function createStorageBucket(bucketName = createBucketName()) {
-        myStorageService.createStorageBucket(bucketName);
+        return myStorageService.createStorageBucket(bucketName);
     }
 
     function listStorageBuckets() {
-        myStorageService.listStorageBuckets();
+        return myStorageService.listStorageBuckets();
     }
 
     function listBucketContents(bucketName) {
@@ -25,15 +24,15 @@ const storageService = (function storage({ type = "default", config = {} } = {})
     }
 
     function getStorageBucket(bucketName) {
-        myStorageService.getStorageBucket(bucketName);
+        //myStorageService.getStorageBucket(bucketName);
     }
 
-    function putStorageBucket(bucketName) {
-        myStorageService.getStorageBucket(bucketName);
+    function putStorageBucket(bucketName, file) {
+        myStorageService.putStorageBucket(bucketName, file);
     }
 
     function deleteStorageBucket(bucketName) {
-        myStorageService.getStorageBucket(bucketName);
+        myStorageService.deleteStorageBucket(bucketName);
     }
 
     function getBucketItem(bucketName, itemId) {
@@ -54,6 +53,6 @@ const storageService = (function storage({ type = "default", config = {} } = {})
         deleteStorageBucket,
         putStorageBucket
     }
-}());
+}
 
-//module.exports = storage;
+module.exports = storage;
