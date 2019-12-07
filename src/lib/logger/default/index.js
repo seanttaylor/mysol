@@ -46,8 +46,8 @@ function defaultLogger() {
 
     /**
      * Writes a message to a file.
-     * @param {Any} msg - A message to log.
-     * @param {String path - Path to the file.
+     * @param {String} msg - A message to log.
+     * @param {String} path - Path to the file.
      * @returns void
      */
 

@@ -1,7 +1,9 @@
 const fileStore = (function defaultFileStorage() {
     const fs = require("fs");
+    const { promisify } = require("util");
     const { join } = require("path");
     const { lstatSync, readdirSync } = fs
+    const writeFile = promisify(fs.writeFile);
 
     function _getDirectories(dir) {
         return readdirSync(dir)
@@ -95,6 +97,27 @@ const fileStore = (function defaultFileStorage() {
     }
 
     function putStorageBucket(bucketName, fileName, data) {
+        return writeFile(`${__dirname}/buckets/${bucketName}/${fileName}`, data)
+            .then(() => {
+                const contents = listBucketContents(bucketName).contents;
+                return {
+                    error: null,
+                    status: "ok",
+                    contents,
+                    size: contents.length
+                }
+            })
+            .catch((e) => {
+                return {
+                    error: e.message,
+                    status: "internal_server_error",
+                    contents: null,
+                    size: null
+                }
+            })
+    }
+
+    function deleteStorageBucket(bucketName, fileName, data) {
 
     }
 
@@ -102,10 +125,11 @@ const fileStore = (function defaultFileStorage() {
         createStorageBucket,
         listStorageBuckets,
         listBucketContents,
-        putStorageBucket
+        putStorageBucket,
+        deleteStorageBucket
     }
 }());
 
-console.log(fileStore.listBucketContents("altered-beast"));
+//console.log(fileStore.listBucketContents("altered-beast"));
 
 //module.exports = defaultFileStorage;
