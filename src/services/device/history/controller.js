@@ -4,6 +4,7 @@ function historyController({ api, router, hal }) {
         return api
             .getEventHistory(req)
             .then(data => {
+                data
                 res.status(200).end(JSON.stringify(hal.of(data), null, 2));
             })
             .catch(error => {

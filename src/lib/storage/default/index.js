@@ -1,10 +1,11 @@
-const fileStore = (function defaultFileStorage() {
+function defaultFileStorage() {
     const fs = require("fs");
     const { promisify } = require("util");
     const { join } = require("path");
-    const { lstatSync, readdirSync } = fs
+    const { lstatSync, readdirSync } = fs;
     const exec = promisify(require("child_process").exec);
     const writeFile = promisify(fs.writeFile);
+    const readFile = promisify(fs.readFile);
 
     function _getDirectories(dir) {
         return readdirSync(dir)
@@ -79,21 +80,21 @@ const fileStore = (function defaultFileStorage() {
             const contents = readdirSync(`${__dirname}/buckets/${bucketName}`)
                 .map(name => join(bucketName, name));
 
-            return {
+            return Promise.resolve({
                 error: null,
                 status: "ok",
                 contents,
                 size: contents.length
-            }
+            })
         }
         catch (e) {
             console.error(e);
-            return {
+            return Promise.resolve({
                 error: e.message,
                 status: "not_found",
                 contents: null,
                 size: null
-            }
+            })
         }
     }
 
@@ -140,6 +141,11 @@ const fileStore = (function defaultFileStorage() {
             });
     }
 
+    function getBucketItem(bucketName, fileName) {
+        return readFile(`${__dirname}/buckets/${bucketName}/${fileName}`, "utf-8")
+            .then((data) => data)
+    }
+
     function deleteBucketItem(bucketName, fileName) {
 
     }
@@ -150,11 +156,10 @@ const fileStore = (function defaultFileStorage() {
         listBucketContents,
         putStorageBucket,
         deleteStorageBucket,
-        deleteBucketItem
+        deleteBucketItem,
+        getBucketItem
     }
-}());
+}
 
-fileStore.deleteStorageBucket("altered-beast")
-    .then(console.log);
 
-//module.exports = defaultFileStorage;
+module.exports = defaultFileStorage;

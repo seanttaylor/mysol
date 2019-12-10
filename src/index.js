@@ -4,6 +4,7 @@ module.exports = {
     events: require("./services/events"),
     router: require("./services/router"),
     logger: require("./services/app-logger"),
+    storage: require("./services/storage"),
     database: require("./services/database"),
     weather: require("./services/device/weather"),
     analytics: require("./services/device/analytics"),

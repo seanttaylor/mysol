@@ -20,27 +20,27 @@ function storage({ type = "default", config = {} } = {}) {
     }
 
     function listBucketContents(bucketName) {
-        myStorageService.listBucketContents(bucketName);
+        return myStorageService.listBucketContents(bucketName);
     }
 
     function getStorageBucket(bucketName) {
         //myStorageService.getStorageBucket(bucketName);
     }
 
-    function putStorageBucket(bucketName, file) {
-        myStorageService.putStorageBucket(bucketName, file);
+    function putStorageBucket() {
+        return myStorageService.putStorageBucket.apply(null, arguments);
     }
 
     function deleteStorageBucket(bucketName) {
-        myStorageService.deleteStorageBucket(bucketName);
+        return myStorageService.deleteStorageBucket(bucketName);
     }
 
     function getBucketItem(bucketName, itemId) {
-        myStorageService.getBucketItem(bucketName, itemId);
+        return myStorageService.getBucketItem.apply(null, arguments);
     }
 
     function deleteBucketItem(bucketName, itemId) {
-        myStorageService.deleteBucketItem(bucketName, itemId);
+        return myStorageService.deleteBucketItema.apply(null, arguments);
     }
 
     return {
@@ -49,8 +49,8 @@ function storage({ type = "default", config = {} } = {}) {
         listBucketContents,
         getBucketItem,
         deleteBucketItem,
-        getStorageBucket,
         deleteStorageBucket,
+        getStorageBucket,
         putStorageBucket
     }
 }

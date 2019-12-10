@@ -4,13 +4,6 @@ function defaultLogger() {
     const appendFile = promisify(fs.appendFile);
     const colorMap = require("./colors.js");
 
-    function _getFileSizeMB(fileName) {
-        const fileStats = fs.statSync(fileName);
-        const fileSizeBytes = fileStats["size"];
-        //Convert to size to MB.
-        return fileSizeBytes / 1000000.0;
-    }
-
     /**
      * Logs a message to the console.
      * @param {Any} msg - A message to log.
@@ -28,7 +21,7 @@ function defaultLogger() {
      */
 
     function error(msg) {
-        console.info(colorMap.fg.red, `[ERROR]: ${msg}`);
+        console.error(colorMap.fg.red, `[ERROR]: ${msg}`);
     }
 
     /**
@@ -48,7 +41,7 @@ function defaultLogger() {
      */
 
     function warn(msg) {
-        console.info(colorMap.fg.yellow, `[WARN]: ${msg}`);
+        console.warn(colorMap.fg.yellow, `[WARN]: ${msg}`);
     }
 
     /**
@@ -59,9 +52,8 @@ function defaultLogger() {
      */
 
     function write(msg, path = "./application-log.txt") {
-        return Promise.resolve();
-        //return appendFile(path, `[${new Date().toISOString()}]: ${msg} \n`)
-        //.then(() => _getFileSizeMB(path));
+        return appendFile(path, `${msg} \n`)
+            .then(() => ({ filePath: path }));
     }
 
     return {

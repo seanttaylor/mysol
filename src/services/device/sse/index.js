@@ -35,9 +35,10 @@ function sseService(bottle) {
         function defaultResponseOf(data) {
             //default implementation does nothing without connected clients.
             logger.log(data);
-            console.log(logger.write(JSON.stringify(data)))
-            //.then(console.log);
-            //eventEmitter.emit("logfile-size-threshold-exceeded");
+            logger.write(JSON.stringify(data))
+                .then(({ filePath }) => {
+                    eventEmitter.emit("logfile-write", filePath);
+                });
         }
 
         /**

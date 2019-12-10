@@ -24,7 +24,7 @@ function logger({ type = "default", config = {} } = {}) {
     }
 
     function write(msg) {
-        myLogger.write(msg);
+        return myLogger.write(msg);
     }
 
     return {
