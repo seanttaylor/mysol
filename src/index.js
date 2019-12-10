@@ -15,6 +15,7 @@ module.exports = {
     battery: require("./services/device/battery"),
     status: require("./services/device/status"),
     control: require("./services/device/control"),
+    history: require("./services/device/history"),
     init: require("./services/device/init"),
     //HTTP service is ALWAYS loaded LAST.//
     HTTPServer: require("./services/server")

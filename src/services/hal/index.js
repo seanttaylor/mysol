@@ -6,7 +6,8 @@
 
 function HALService(bottle) {
     const resources = {
-        device: require("./device.js")
+        device: require("./device.js"),
+        events: require("./events.js")
     }
     bottle.service("hal", function() {
         /**
