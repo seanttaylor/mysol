@@ -1,6 +1,6 @@
 /**
  * serviceName#sensorService
- * serviceDesc: Exposes API for accessing Observables returned from
+ * serviceDescription: Exposes API for accessing Observables returned from
  * all device sensors.
  */
 

@@ -1,6 +1,6 @@
 /**
  * serviceName#gpioService
- * serviceDesc: Exposes API for connecting to device GPIO board.
+ * serviceDescription: Exposes API for connecting to device GPIO board.
  */
 
 function gpioService(bottle) {

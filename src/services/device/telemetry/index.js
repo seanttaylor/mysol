@@ -1,6 +1,6 @@
 /**
  * serviceName#telemetryService
- * serviceDesc: Merges all incoming data streams from the device sensors.
+ * serviceDescription: Merges all incoming data streams from the device sensors.
  * Emits event with all telemetry data in the payload.
  */
 

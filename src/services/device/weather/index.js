@@ -1,6 +1,6 @@
 /**
  * serviceName#weatherService
- * serviceDesc: Exposes API for accessing the weather data stream.
+ * serviceDescription: Exposes API for accessing the weather data stream.
  */
 
 function weatherService(bottle) {

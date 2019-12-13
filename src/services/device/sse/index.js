@@ -1,7 +1,7 @@
 /**
  * serviceName#sseService
- * serviceDesc: Exposes API for pushing Server-Sent Events to connected
- * clients.
+ * serviceDescription: Exposes API for pushing Server-Sent Events to
+ * connected clients.
  * Creates Express route for pushing Server-Sent Events.
  */
 

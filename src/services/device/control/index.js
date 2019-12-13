@@ -1,6 +1,6 @@
 /**
  * serviceName#controlService
- * serviceDesc: Main control for device; only module with access to all
+ * serviceDescription: Main control for device; only module with access to all
  * device services.
  */
 

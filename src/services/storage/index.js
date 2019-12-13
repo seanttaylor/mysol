@@ -1,6 +1,6 @@
 /**
  * serviceName#storageService
- * serviceDesc: Exposes API for static file storage.
+ * serviceDescription: Exposes API for static file storage.
  */
 function storageService(bottle) {
     const libStorage = require("../../lib/storage")();

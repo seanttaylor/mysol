@@ -1,6 +1,6 @@
 /**
  * serviceName#initService
- * serviceDesc: Handles initialization tasks when device starts.
+ * serviceDescription: Handles initialization tasks when device starts.
  */
 
 function initService(bottle) {

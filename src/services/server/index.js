@@ -1,6 +1,7 @@
 /**
  * serviceName#HTTPServer
- * serviceDesc: Creates an Express server, enabling device control over HTTP.
+ * serviceDescription: Creates an Express server, enabling device control over
+ * HTTP.
  */
 
 function HTTPServer(bottle) {

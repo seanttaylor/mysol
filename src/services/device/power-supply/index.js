@@ -1,6 +1,7 @@
 /**
  * serviceName#powerSupplyService
- * serviceDesc: Exposes API for getting data from the device power supply unit.
+ * serviceDescription: Exposes API for getting data from the device power
+ * supply unit.
  */
 
 function powerSupplyService(bottle) {

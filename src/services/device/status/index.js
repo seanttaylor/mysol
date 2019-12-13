@@ -1,6 +1,6 @@
 /**
  * serviceName#statusService
- * serviceDesc: Exposes API for fetching device status, formatting HTTP
+ * serviceDescription: Exposes API for fetching device status, formatting HTTP
  * responses as HAL (http://stateless.co/hal_specification.html).
  * Creates Express route at /status.
  */

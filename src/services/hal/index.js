@@ -1,6 +1,6 @@
 /**
  * serviceName#HALService
- * serviceDesc: Exposes API for formattted HTTP responses as
+ * serviceDescription: Exposes API for formattted HTTP responses as
  * HAL (http://stateless.co/hal_specification.html).
  */
 

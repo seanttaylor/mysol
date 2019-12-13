@@ -1,6 +1,6 @@
 /**
  * serviceName#batteryService
- * serviceDesc: Exposes API for querying data from the device battery.
+ * serviceDescription: Exposes API for querying data from the device battery.
  */
 
 function batteryService(bottle) {

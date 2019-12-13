@@ -1,6 +1,6 @@
 /**
  * serviceName#eventService
- * serviceDesc: Exposes API for application-level publish/subscribe.
+ * serviceDescription: Exposes API for application-level publish/subscribe.
  */
 function eventService(bottle) {
 

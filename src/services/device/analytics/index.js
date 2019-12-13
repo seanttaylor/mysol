@@ -1,6 +1,6 @@
 /**
  * serviceName#analyticsService
- * serviceDesc: Processes incoming data from the sensor array.
+ * serviceDescription: Processes incoming data from the sensor array.
  */
 
 function analyticsService(bottle) {
