@@ -26,6 +26,12 @@ function HTTPServer(bottle) {
     app.use("/device/status", status.controller);
     app.use("/device/sse", sse.controller);
     app.use("/device/events", history.controller);
+    app.use(defaultErrorController);
+
+    function defaultErrorController(err, req, res, next) {
+      console.error(err.stack);
+      res.status(500).send();
+    }
 
     http.createServer(app).listen(serverPort, () => {
       console.log("mySōl server is listening on port %d (http://localhost:%d)", serverPort, serverPort);

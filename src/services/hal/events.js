@@ -4,7 +4,8 @@
  * @returns {Object} - HAL formatted data.
  */
 
-function events(data) {
+function events(resource) {
+    const { _entity, data } = resource;
     return {
         _links: {
             self: {
@@ -16,9 +17,16 @@ function events(data) {
                 href: "/events/replay?startdate={YYYY-MM-DDThh:mm:ss}&enddate={YYYY-MM-DDThh:mm:ss}",
                 title: "Re-emit events to connected client(s).",
                 templated: true
+            },
+            rel: {
+                href: "http://localhost:8081/api/relations/events",
+                title: "Canonical definition of this resource with annotations."
             }
         },
-        ...data
+        _embedded: {
+            events: data
+        }
+
     }
 };
 

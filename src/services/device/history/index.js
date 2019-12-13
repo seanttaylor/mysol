@@ -1,15 +1,21 @@
 /**
  * serviceName#historyService
- * serviceDesc: Exposes API for retreiving stored event streams.
+ * serviceDescription: Exposes API for retreiving stored event streams.
  */
 function historyService(bottle) {
-    const dependencies = ["router", "hal", "events", "storage"];
+    const dependencies = ["router", "hal", "events", "storage", "logger-service"];
     const myController = require("./controller.js");
     const { promisify } = require("util");
     const fs = require("fs");
     const readFile = promisify(fs.readFile);
 
-    bottle.service("history", function(router, hal, eventEmitter, storageService) {
+    bottle.service("history", function(
+        router,
+        hal,
+        eventEmitter,
+        storageService,
+        logger
+    ) {
 
         const api = {
             onReplayEventHistory,
@@ -18,7 +24,7 @@ function historyService(bottle) {
 
         function _parseEventHistoryData(data = []) {
             return data.reduce((res, file) => {
-                const streams = file.split("\n\n");
+                const streams = file.trim().split("\n\n").map(ln => JSON.parse(ln));
                 return res.concat(streams);
             }, []);
         }
@@ -38,7 +44,7 @@ function historyService(bottle) {
                 .then((data) => {
                     return { _entity: "events", data };
                 })
-                .catch(console.error)
+                .catch(logger.error)
         }
 
         return {

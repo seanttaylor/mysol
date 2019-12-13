@@ -16,7 +16,6 @@ function logger({ type = "default", config = {} } = {}) {
 
     function info(msg) {
         myLogger.info(msg);
-
     }
 
     function warn(msg) {
