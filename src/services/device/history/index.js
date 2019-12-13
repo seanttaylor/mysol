@@ -18,17 +18,13 @@ function historyService(bottle) {
 
         function _parseEventHistoryData(data = []) {
             return data.reduce((res, file) => {
-                const streams = file.split("\n").map(line => {
-                    let ln = line.slice(7).replace(/\\/g, "")
-                        .replace(/nn/g, "").replace(" ", "")
-                    return ln;
-                });
+                const streams = file.split("\n\n");
                 return res.concat(streams);
             }, []);
         }
 
         function _getLogFile(filePath) {
-            return storageService.getBucketItem("events", filePath.slice(7))
+            return storageService.getBucketItem("events", filePath.slice(7));
         }
 
         function onReplayEventHistory(startDate, endDate) {

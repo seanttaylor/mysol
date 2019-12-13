@@ -35,7 +35,7 @@ function sseService(bottle) {
         function defaultResponseOf(data) {
             //default implementation does nothing without connected clients.
             logger.log(data);
-            logger.write(JSON.stringify(data))
+            logger.write(data.slice(6))
                 .then(({ filePath }) => {
                     eventEmitter.emit("logfile-write", filePath);
                 });

@@ -52,7 +52,7 @@ function defaultLogger() {
      */
 
     function write(msg, path = "./application-log.txt") {
-        return appendFile(path, `${msg} \n`)
+        return appendFile(path, `${msg}`)
             .then(() => ({ filePath: path }));
     }
 
