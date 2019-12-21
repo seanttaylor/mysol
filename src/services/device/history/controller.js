@@ -2,7 +2,7 @@ function historyController({ api, router, hal }) {
 
     router.get("/", (req, res) => {
         return api
-            .getEventHistory(req)
+            .getEventHistory(req.query["startdate"], req.query["enddate"])
             .then(data => {
                 data
                 res.status(200).end(JSON.stringify(hal.of(data), null, 2));

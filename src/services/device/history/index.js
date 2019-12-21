@@ -55,6 +55,23 @@ function historyService(bottle) {
             return storageService.getBucketItem("events", filePath.slice(7));
         }
 
+        /**
+         * Filters a list of ISO Date strings, retaining only the dates between
+         * the startDate and endDate parameters.
+         * @param {String} startDate - UNIX timestamp.
+         * @param {String} endDate - UNIX timestamp.
+         * @param {String} filePath - Log file path formatted as
+         * ISO Date string.
+         * @retuns {Array} - list of ISO Date Strings.
+         */
+
+        function _filterEventsByStartEndDate(startDate, endDate, filePath) {
+            /*convert to UNIX time string; remove file folder name and
+            extension.*/
+            const timestamp = new Date(filePath.slice(7, -4)).getTime();
+            return timestamp >= startDate && timestamp <= endDate;
+        }
+
         function onReplayEventHistory(startDate, endDate) {
             return {};
         }
@@ -68,8 +85,12 @@ function historyService(bottle) {
          */
 
         function getEventHistory(startDate, endDate) {
+            const _startDate = new Date(startDate).getTime();
+            const _endDate = new Date(endDate).getTime();
+
             return storageService.listBucketContents("events")
-                .then(({ contents }) => Promise.all(contents.map(_getLogFile)))
+                .then(({ contents }) => contents.filter(_filterEventsByStartEndDate.bind(null, _startDate, _endDate)))
+                .then((contents) => Promise.all(contents.map(_getLogFile)))
                 .then((data) => _parseEventHistoryData(data))
                 .then((data) => {
                     return { _entity: "events", data };
