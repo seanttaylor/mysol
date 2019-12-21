@@ -20,8 +20,9 @@ function defaultLogger() {
      * @returns void
      */
 
-    function error(msg) {
-        console.error(colorMap.fg.red, `[ERROR]: ${msg}`);
+    function error(e) {
+        console.error(e.stack);
+        console.error(colorMap.fg.red, `[ERROR]: ${e.message}`);
     }
 
     /**

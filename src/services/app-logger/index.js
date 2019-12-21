@@ -6,7 +6,7 @@ function loggerService(bottle) {
     const logger = require("../../lib/logger")();
     const fs = require("fs");
     const dependencies = ["events"];
-    const logfileSizeThresholdMB = 0.5;
+    const logfileSizeThresholdMB = 1.0;
 
     bottle.service("logger-service", function(eventEmitter) {
         eventEmitter.on("logfile-write", onLogfileWrite);

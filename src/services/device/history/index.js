@@ -32,7 +32,15 @@ function historyService(bottle) {
 
         function _parseEventHistoryData(data = []) {
             return data.reduce((res, file) => {
-                const streams = file.trim().split("\n\n").map(ln => JSON.parse(ln));
+                const streams = file.trim().split("\n\n").map((ln) => {
+                    try {
+                        //doing try/catch here because we don't want an empty 500 response off one bad parse.
+                        return JSON.parse(ln);
+                    }
+                    catch (e) {
+                        //Send events that failed to parse to dead-letter queue.
+                    }
+                });
                 return res.concat(streams);
             }, []);
         }

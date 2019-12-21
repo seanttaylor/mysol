@@ -23,10 +23,7 @@ function events(resource) {
                 title: "Canonical definition of this resource with annotations."
             }
         },
-        _embedded: {
-            events: data
-        }
-
+        events: data
     }
 };
 
